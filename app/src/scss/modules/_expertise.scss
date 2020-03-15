@@ -1,0 +1,42 @@
+.expertise_container {
+  @include vp-flexbox();
+  @include vp-flex-flow(column nowrap);
+  @include vp-align-items(center);
+}
+
+.expertise_promo {
+  position: relative;
+
+  &::after {
+    @include separator(rgba(65, 61, 75, 0.3), 2px, 0);
+  }
+}
+
+.expertise_list {
+  @include vp-flexbox();
+  @include vp-flex-flow(row wrap);
+}
+
+.expertise_list-item {
+  @include vp-flexbox();
+  @include vp-flex-flow(column nowrap);
+  @include vp-justify-content(space-between);
+  padding: 35px;
+  border-right: 1px solid $expertise-grid-border-color;
+  border-bottom: 1px solid $expertise-grid-border-color;
+
+  line-height: 1.57em;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.expertise_list-icon {
+  margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .expertise_list-item {
+    width: 33.33%;
+    @include hide_outer_borders(3);
+  }
+}

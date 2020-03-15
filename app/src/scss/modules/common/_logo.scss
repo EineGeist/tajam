@@ -1,0 +1,19 @@
+.logo {
+  @include vp-flexbox();
+  @include vp-flex-flow(row nowrap);
+  @include vp-justify-content(space-between);
+  @include vp-align-items(center);
+}
+
+.logo-img {
+  width: 44px;
+  height: 50px;
+  margin-right: 10px;
+  background: url("../files/assets/logo.png") no-repeat center;
+}
+
+.logo-title {
+  font-size: 2.14em;
+  font-weight: $thin;
+  color: $complementary-color;
+}

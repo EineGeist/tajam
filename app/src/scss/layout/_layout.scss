@@ -1,0 +1,54 @@
+.l-section {
+  @include vp-flexbox();
+  flex-direction: column;
+  width: 100%;
+}
+
+.l-content {
+  @include vp-flexbox();
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 70px 10px;
+}
+
+#home {
+  min-height: 670px;
+  background: $main-color url("../files/bg/home.jpg") no-repeat center;
+  @include vp-background-size(cover);
+
+  text-align: center;
+}
+
+#about {
+  min-height: 950px;
+
+  color: $contrast-text-color;
+}
+
+#expertise {
+  color: $contrast-text-color;
+}
+
+#team {
+  background: $main-color url("../files/bg/team.jpg") no-repeat center;
+  @include vp-background-size(cover);
+}
+
+#works {
+  color: $contrast-text-color;
+}
+
+#testimonials {
+  background: $main-color url("../files/bg/testimonials.jpg") no-repeat center;
+  @include vp-background-size(cover);
+}
+
+#contact {
+  color: $contrast-text-color;
+}
+
+#page-footer {
+  background: $main-color url("../files/bg/footer.jpg") no-repeat center;
+  @include vp-background-size(cover);
+}

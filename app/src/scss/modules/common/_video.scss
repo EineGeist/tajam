@@ -1,0 +1,42 @@
+.video-container {
+  position: relative;
+
+  @include vp-flexbox();
+  @include vp-align-items(center);
+  @include vp-justify-content(center);
+  padding: 0;
+
+  @include vp-transition(background-color 0.4s ease);
+}
+
+.start-playing {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+
+  + .video {
+    display: none;
+  }
+
+  &:hover .start-playing-icon {
+    background-image: url("../files/assets/play_icon_hover.png");
+  }
+}
+
+.start-playing-icon {
+  display: block;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto 30px;
+
+  background: url("../files/assets/play_icon.png") no-repeat center;
+  @include vp-background-size(contain);
+}
+
+.start-playing-sub {
+  font-size: 1.14em;
+  letter-spacing: 0.05em;
+  font-weight: $black;
+  text-transform: uppercase;
+}
+

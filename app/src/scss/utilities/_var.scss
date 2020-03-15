@@ -1,0 +1,43 @@
+$clientWidth: calc(100vw - (100vw - 100%));
+
+// Color scheme
+
+$main-color: #130d33;
+$contrast-color: #ffffff;
+$complementary-color: #00ccbc;
+$complementary-color-lighter: #00d6c6;
+$complementary-color-darker: #00c2b2;
+
+// Text color
+
+$main-text-color: $contrast-color;
+$contrast-text-color: #413d4b;
+
+
+// links color
+
+$link-hover: $complementary-color;
+$link-active: $complementary-color-darker;
+$button-color: $complementary-color;
+$button-color-hover: $complementary-color-lighter;
+$button-color-active: $complementary-color-darker;
+
+$button-color-footer: rgba($contrast-color, 0.5);
+$button-color-footer-hover: rgba($contrast-color, 0.6);
+
+
+// Other colors
+
+$form-border-color: rgba(0, 0, 0, 0.1);
+$expertise-grid-border-color: #ebebeb;
+$person-caption-border-color: rgba(215, 215, 217, 0.5);
+
+$valid: #00aa00;
+$invalid: #ff0000;
+
+
+// Font weights
+
+$thin: 100;
+$light: 300;
+$black: 900;

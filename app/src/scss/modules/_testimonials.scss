@@ -1,0 +1,124 @@
+.testimonials_container {
+  position: relative;
+  @include vp-flexbox();
+  @include vp-flex-flow(column nowrap);
+  @include vp-align-items(center);
+}
+
+.testimony {
+  position: relative;
+  @include vp-flexbox();
+  @include vp-flex-flow(column nowrap);
+  @include vp-align-items(center);
+  margin-bottom: 40px;
+  padding: 5rem 80px 0;
+  text-align: center;
+
+  &::before {
+    content: "\201C";
+    position: absolute;
+    top: 30px;
+
+    display: block;
+    width: 100%;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 100px;
+    line-height: 0;
+  }
+}
+
+.testimony_quote {
+  margin-bottom: 50px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.14em;
+  line-height: 1.85em;
+  letter-spacing: 0.025em;
+
+  &::before,
+  &::after {
+    content: none;
+  }
+}
+
+.testimony_author {
+  letter-spacing: 0.05em;
+  font-weight: $black;
+  text-transform: uppercase;
+}
+
+.testimony_author-position {
+  font-size: 0.92em;
+  font-weight: $light;
+  text-transform: uppercase;
+}
+
+.testimonials_nav {
+  height: 0;
+  padding: 0;
+
+  .owl-prev,
+  .owl-next {
+    position: absolute;
+    bottom: 22px; // 22px = testimonials_dots height / 2 - arrow height / 2
+  }
+
+  // 183px = testimonials_dots width / 2 + 30px
+  .owl-prev {
+    left: calc(50% - 183px);
+  }
+
+  .owl-next {
+    right: calc(50% - 183px);
+  }
+}
+
+.testimonials_dots {
+  @include vp-flexbox();
+  @include vp-flex-flow(row nowrap);
+  @include vp-align-items(center);
+  @include vp-justify-content(center);
+  height: 70px;
+}
+
+.testimonials_dot {
+  height: 45px;
+  width: 45px;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include vp-background-size(contain);
+  border-radius: 50%;
+  margin-right: 14px;
+  padding: 0;
+
+  @include vp-transition(0.1s ease-in);
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &.active {
+    width: 70px;
+    height: 70px;
+  }
+
+  &:nth-child(1) {
+    background-image: url("../files/testimonials_photos/1.jpg");
+  }
+
+  &:nth-child(2) {
+    background-image: url("../files/testimonials_photos/2.jpg");
+  }
+
+  &:nth-child(3) {
+    background-image: url("../files/testimonials_photos/3.jpg");
+  }
+
+  &:nth-child(4) {
+    background-image: url("../files/testimonials_photos/4.jpg");
+  }
+
+  &:nth-child(5) {
+    background-image: url("../files/testimonials_photos/5.jpg");
+  }
+}

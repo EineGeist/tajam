@@ -1,0 +1,26 @@
+.team_container {
+  @include vp-flexbox();
+  @include vp-flex-flow(column nowrap);
+  @include vp-align-items(center);
+  @include vp-justify-content(center);
+}
+
+.team_promo {
+  position: relative;
+
+  &::after {
+    @include separator(rgba($contrast-color, 0.2), 2px, 0);
+  }
+}
+
+.team_cards {
+  margin-bottom: 60px;
+}
+
+.person-name {
+  font-weight: bold;
+}
+
+.team_sub {
+  letter-spacing: 0.05em;
+}

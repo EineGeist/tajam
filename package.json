@@ -1,0 +1,19 @@
+{
+  "name": "tajam",
+  "version": "1.0.0",
+  "description": "Tajam landing page",
+  "main": "app/index.html",
+  "scripts": {
+    "build:sass": "sass app/src/scss/main.scss app/dist/style.css",
+    "watch:sass": "sass --watch app/src/scss/main.scss app/dist/style.css"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Ivan Dovzhikov",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.26.2",
+    "sass-autoprefixer": "^1.0.1"
+  }
+}

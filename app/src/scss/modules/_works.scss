@@ -1,0 +1,75 @@
+.works_top {
+  @include vp-flexbox();
+  @include vp-align-items(center);
+  @include vp-justify-content(space-between);
+}
+
+.works_link {
+  letter-spacing: 0.05em;
+  color: $contrast-text-color;
+}
+
+.works_images-container {
+  @include vp-flexbox();
+  @include vp-flex-flow(row wrap);
+  @include vp-align-items(start);
+  @include vp-justify-content(center);
+  @include vp-overflow-y(hidden);
+  max-height: 400px;
+  background-color: $main-color;
+}
+
+.works_figure {
+  position: relative;
+  cursor: pointer;
+  @include vp-overflow-y(hidden);
+
+  &:hover .works_caption {
+    top: 0;
+  }
+}
+
+.works_caption {
+  position: absolute;
+  top: 100%;
+
+  @include vp-flexbox();
+  @include vp-flex-flow(column);
+  @include vp-align-items(center);
+  @include vp-justify-content(center);
+
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  font-size: 1.14em;
+  line-height: 1.625em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: $main-text-color;
+
+  @include vp-transition(0.3s ease);
+
+  & > * {
+    cursor: auto;
+  }
+
+  & > h3 {
+    border-bottom: 1px dashed $main-text-color;
+    text-transform: initial;
+
+    &:hover {
+      border-color: $complementary-color;
+    }
+  }
+}
+
+.works_image {
+  display: block;
+}
+
+.works_bottom {
+  @include vp-flexbox();
+  @include vp-justify-content(center);
+}

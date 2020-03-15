@@ -1,0 +1,51 @@
+body {
+  overflow: hidden;
+}
+
+.preloader {
+  z-index: 9000;
+  position: fixed;
+  @include vp-flexbox;
+  @include vp-align-items(center);
+  @include vp-justify-content(center);
+  height: 100vh;
+  width: 100%;
+  background-color: $main-color;
+}
+
+.preloader_loading-sign {
+  font-family: 'Arial', sans-serif;
+  font-size: 10em;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: $complementary-color;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+
+    display: block;
+    width: 200px;
+    height: 100px;
+    border-color: $complementary-color;
+    border-style: solid;
+    border-bottom-width: 2px;
+  }
+
+  &::before {
+    top: 15px;
+    left: 15px;
+
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  &::after {
+    right: 15px;
+    bottom: 15px;
+
+    border-top: 0;
+    border-left: 0;
+  }
+}

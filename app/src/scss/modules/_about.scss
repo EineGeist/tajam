@@ -1,0 +1,35 @@
+.about_container {
+  @include vp-flexbox();
+  @include vp-flex-flow(row nowrap);
+}
+
+.about_logo-container {
+  @include vp-flexbox();
+  @include vp-align-items(start);
+  @include vp-justify-content(center);
+  width: 41.66%; // 5/12
+}
+
+.about_big-logo {
+  max-height: 235px;
+}
+
+.about_promo {
+  width: 58.33%; // 7/12
+  padding-left: 10px;
+
+  line-height: 1.57em;
+  letter-spacing: 0.03em;
+}
+
+.about_video-bg-wrapper {
+  @include vp-flexbox();
+  min-height: 550px;
+
+  background: $main-color url("../files/bg/about.jpg") no-repeat center;
+  @include vp-background-size(cover);
+}
+
+.about_video {
+  width: 100%;
+}
