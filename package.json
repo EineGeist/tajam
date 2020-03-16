@@ -1,11 +1,13 @@
 {
   "name": "tajam",
   "version": "1.0.0",
+  "homepage": "https://einegeist.github.io/tajam",
   "description": "Tajam landing page",
   "main": "app/index.html",
   "scripts": {
     "build:sass": "sass src/scss/main.scss app/css/style.css",
-    "watch:sass": "sass --watch src/scss/main.scss app/css/style.css"
+    "watch:sass": "sass --watch src/scss/main.scss app/css/style.css",
+    "deploy": "npm run build:sass && gh-pages -d app"
   },
   "repository": {
     "type": "git"
@@ -13,6 +15,7 @@
   "author": "Ivan Dovzhikov",
   "license": "MIT",
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "sass": "^1.26.2",
     "sass-autoprefixer": "^1.0.1"
   }
