@@ -1,5 +1,5 @@
-app/files
-app/dist
+/app/files
+/app/css
 /node_modules
 /.idea
 
