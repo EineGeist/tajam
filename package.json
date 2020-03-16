@@ -7,7 +7,9 @@
   "scripts": {
     "build:sass": "sass src/scss/main.scss app/css/style.css",
     "watch:sass": "sass --watch src/scss/main.scss app/css/style.css",
-    "deploy": "npm run build:sass && gh-pages -d app"
+    "push:master": "git push -u origin master",
+    "push:gh-pages": "gh-pages -d app",
+    "deploy": "npm run build:sass && npm run push:master && npm run push:gh-pages"
   },
   "repository": {
     "type": "git"
