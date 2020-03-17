@@ -5,6 +5,8 @@ Darmawan.
 This is a web page created according to [Aji's PSD](https://dribbble.com/shots/2540971-Agency-Website-PSD).
 It contains various visual additions, carousels and self-written Gallery viewer.
 
+[Live demo](https://einegeist.github.io/tajam/)
+
 <hr>
 
 ### Future plans:
