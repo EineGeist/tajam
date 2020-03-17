@@ -440,17 +440,21 @@ class WorksGallery {
   constructor($gallery) {
     this.$gallery = $gallery;
     this.$imagesContainer = $gallery.children('.works_images-container');
+    this.$images = $gallery.find('.works_image');
     this.isCollapsed = true;
 
+    this.setContainerHeight(0);
     this.setUpEventListeners();
   }
 
   setUpEventListeners() {
-    // To turn it on and off any time
-    this.fixContainerHeight = this.fixContainerHeight.bind(this);
-
     this.$gallery.on('click', this.toggleButtonHandler.bind(this));
     this.$imagesContainer.on('click', this.openGalleryViewerHandler.bind(this));
+    $(window).on('resize', this.pageResizeHandler.bind(this));
+  }
+
+  pageResizeHandler() {
+    this.setContainerHeight(0);
   }
 
   openGalleryViewerHandler(e) {
@@ -481,39 +485,26 @@ class WorksGallery {
 
     if (this.isCollapsed) {
       $toggleButton.text('Load more');
-      $(window).off('resize', this.fixContainerHeight);
     } else {
       $toggleButton.text('Hide');
-      $(window).on('resize', this.fixContainerHeight);
     }
 
-    this.setContainerHeight();
+    this.setContainerHeight(300);
   }
 
-  setContainerHeight() {
+  setContainerHeight(animationDuration = 0) {
     const {isCollapsed, $imagesContainer} = this;
 
     if (isCollapsed) {
+      const imageHeight = this.$images.height();
       $imagesContainer.animate({
-        'max-height': '400px'
-      }, 300);
+        'max-height': imageHeight * 2
+      }, animationDuration);
     } else {
       $imagesContainer.animate({
         'max-height': $imagesContainer.get(0).scrollHeight
-      }, 300);
+      }, animationDuration);
     }
-  }
-
-  // As the width of the clientWidth increases, gallery
-  // previews go up, but not the container height since it
-  // has been set to scrollHeight due to JQuery and CSS
-  // can't animate "auto" value.
-  fixContainerHeight() {
-    const {$imagesContainer} = this;
-
-    $imagesContainer.css(
-      'max-height', $imagesContainer.get(0).scrollHeight
-    )
   }
 }
 

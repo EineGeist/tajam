@@ -21,12 +21,18 @@
 
 .works_figure {
   position: relative;
+  width: 16.66%;
   cursor: pointer;
   @include vp-overflow-y(hidden);
 
   &:hover .works_caption {
     top: 0;
   }
+}
+
+.works_image {
+  display: block;
+  width: 100%;
 }
 
 .works_caption {
@@ -65,11 +71,50 @@
   }
 }
 
-.works_image {
-  display: block;
-}
-
 .works_bottom {
   @include vp-flexbox();
   @include vp-justify-content(center);
+}
+
+//* Adaptive styles ***********//
+
+@include for_big-tablet {
+  .works_figure {
+    width: 20%;
+  }
+
+  .works_caption {
+    font-size: 0.875em;
+  }
+}
+
+@include for_tablet {
+  .works_figure {
+    width: 25%;
+  }
+}
+
+@include for_big_phone {
+  .works_figure {
+    width: 33.33%;
+  }
+
+  .works_caption {
+    display: none;
+  }
+}
+
+@include for_phone {
+  .works_top {
+    @include vp-flex-flow(column nowrap);
+    text-align: center;
+  }
+
+  .works_tittle {
+    margin-bottom: 10px;
+  }
+
+  .works_figure {
+    width: 50%;
+  }
 }
