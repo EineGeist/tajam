@@ -19,27 +19,7 @@
   @include vp-justify-content(space-between);
 }
 
-.page-navigation-open,
-.page-navigation-close {
-  display: none;
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  border-width: 2px;
-  border-radius: 50%;
-
-  font-family: icomoon;
-  font-size: 30px;
-}
-
-.page-navigation-close {
-  z-index: 21;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-}
-
-.page-navigation {
+.page-nav {
   @include vp-flexbox();
   @include vp-flex-flow(row nowrap);
 
@@ -50,7 +30,7 @@
   text-transform: uppercase;
 }
 
-.page-navigation-item {
+.page-nav_item {
   margin-right: 12px;
 
   &:last-of-type {
@@ -101,7 +81,7 @@
   padding: 0 calc(8.33% + 10px); //8.33 = 1/12
 }
 
-.home_title {
+.home_promo-title {
   position: relative;
 
   display: block;
@@ -123,4 +103,202 @@
   margin-bottom: 30px;
   line-height: 1.71em;
   letter-spacing: 0.05em;
+}
+
+//* Adaptive styles ***********//
+
+.page-nav_toggle {
+  z-index: 8100;
+  position: fixed;
+  top: 10px;
+  right: 30px;
+
+  display: none;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-width: 2px;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:hover .page-nav_icon {
+    left: 8px;
+    right: 8px;
+  }
+
+  &.is-cross {
+    .page-nav_icon-top {
+      @include vp-animation(cross_icon-top 0.3s ease forwards);
+    }
+
+    .page-nav_icon-middle {
+      @include vp-animation(cross_icon-middle 0.3s ease forwards);
+    }
+
+    .page-nav_icon-bottom {
+      @include vp-animation(cross_icon-bottom 0.3s ease forwards);
+    }
+  }
+
+  &.is-menu {
+    .page-nav_icon-top {
+      @include vp-animation(menu_icon-top 0.3s ease forwards);
+    }
+
+    .page-nav_icon-middle {
+      @include vp-animation(menu_icon-middle 0.3s ease forwards);
+    }
+
+    .page-nav_icon-bottom {
+      @include vp-animation(menu_icon-bottom 0.3s ease forwards);
+    }
+  }
+}
+
+.page-nav_icon {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+
+  display: block;
+  height: 5px;
+  background-color: $complementary-color;
+  border-radius: 2px;
+
+  @include vp-transition(left 0.3s ease, right 0.3s ease);
+}
+
+$icon-top-position: 10px;
+$icon-middle-position: 20px;
+$icon-bottom-position: 30px;
+
+@include for_tablet {
+  .page-nav_toggle {
+    display: block;
+  }
+
+  .page-nav {
+    z-index: 8000;
+    position: fixed;
+    right: 0;
+    bottom: 100%;
+
+    @include vp-flex-flow(column nowrap);
+    @include vp-align-items(flex-end);
+    padding: 120px 30px 30px;
+    background-color: rgba($main-color, 0.6);
+
+    @include vp-transition(0.3s ease);
+
+    &.is-expand {
+      @include vp-transform( translateY(100%) );
+    }
+  }
+
+  .page-nav_item {
+    margin: 0 0 20px;
+  }
+
+  .home_promo {
+    margin-top: 50px;
+  }
+}
+
+@include for_big_phone {
+  .home_promo {
+    padding: 0;
+  }
+
+  .home_promo-title {
+    font-size: 1.78em;
+  }
+}
+
+@keyframes cross_icon-top {
+  0% {
+    top: $icon-top-position;
+  }
+
+  50% {
+    top: $icon-middle-position;
+  }
+
+  100% {
+    top: $icon-middle-position;
+    @include vp-transform(rotate(45deg));
+  }
+}
+
+@keyframes cross_icon-middle {
+  0% {
+    top: $icon-middle-position;
+  }
+
+  100% {
+    top: $icon-middle-position;
+    @include vp-transform(rotate(45deg));
+  }
+}
+
+@keyframes cross_icon-bottom {
+  0% {
+    top: $icon-bottom-position;
+  }
+
+  50% {
+    top: $icon-middle-position;
+  }
+
+  100% {
+    top: $icon-middle-position;
+    @include vp-transform(rotate(-45deg));
+  }
+}
+
+@keyframes menu_icon-top {
+  0% {
+    top: $icon-middle-position;
+    @include vp-transform(rotate(45deg));
+  }
+
+  50% {
+    top: $icon-middle-position;
+    @include vp-transform(rotate(0deg));
+  }
+
+  100% {
+    top: $icon-top-position;
+  }
+}
+
+@keyframes menu_icon-middle {
+  0% {
+    top: $icon-middle-position;
+  }
+
+  50% {
+    @include vp-transform(rotate(0deg));
+  }
+
+  100% {
+    top: $icon-middle-position;
+  }
+}
+
+@keyframes menu_icon-bottom {
+  0% {
+    top: $icon-middle-position;
+    @include vp-transform(rotate(-45deg));
+  }
+
+  50% {
+    top: $icon-middle-position;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    top: $icon-bottom-position;
+  }
 }

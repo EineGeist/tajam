@@ -611,7 +611,6 @@ class EventListeners {
     this.$page = $('body');
 
     this.$page.on('click', this.preventPlaceholderScroll);
-    $('.page-navigation').on('click', this.anchorLinkSmoothScroll);
     $('.video-container').on('click', this.videoPlayHandler);
     $('form').on({
       'change': this.inputFocusoutHandler,
@@ -623,15 +622,6 @@ class EventListeners {
     const $link = $(e.target);
 
     if (isPlaceholderLink($link)) e.preventDefault();
-  }
-
-  anchorLinkSmoothScroll(e) {
-    const $target = $(e.target);
-    if (!isAnchorLink($target)) return;
-
-    $('html').add('body').animate({
-      scrollTop: $($target.attr('href')).offset().top
-    }, 400, 'swing');
   }
 
   videoPlayHandler(e) {
@@ -669,12 +659,58 @@ class EventListeners {
   }
 }
 
+const pageNavigation = {
+  isCollapsed: true,
+  $pageNavigation: $('.page-nav'),
+
+  toggleListener() {
+    const {$pageNavigation} = this;
+    const $button = $('.page-nav_toggle');
+
+    $button.on('click', () => {
+      const isCollapsed = this.isCollapsed = !this.isCollapsed;
+
+      if (isCollapsed) {
+        $pageNavigation.removeClass('is-expand');
+        $button
+          .removeClass('is-cross')
+          .addClass('is-menu');
+      } else {
+        $pageNavigation.addClass('is-expand');
+        $button
+          .removeClass('is-menu')
+          .addClass('is-cross');
+      }
+    });
+
+    return this;
+  },
+
+  anchorLinkListener() {
+    this.$pageNavigation.on('click', e => {
+      const $target = $(e.target);
+      if (!isAnchorLink($target)) return;
+
+      $('html').add('body').animate({
+        scrollTop: $($target.attr('href')).offset().top
+      }, 400, 'swing');
+    });
+
+    return this;
+  },
+};
+
 $(() => {
   $('body').css('overflow', 'auto');
   $('.preloader').fadeOut(300);
 
   setUpCarousels();
   autosize($('.textarea-autosize'));
+
+  pageNavigation
+    .toggleListener()
+    .anchorLinkListener();
+
   new EventListeners();
   new WorksGallery($('#works_gallery'));
 });
