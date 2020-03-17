@@ -75,3 +75,20 @@ button {
     font-size: 100%;
   }
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1b1b1b;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: #636363;
+
+  &:hover {
+    background-color: $complementary-color;
+  }
+}
