@@ -69,3 +69,9 @@ button {
   border: 0;
   outline: 0;
 }
+
+@include for_big_tablet() {
+  html {
+    font-size: 100%;
+  }
+}
