@@ -40,3 +40,39 @@
     @include hide_outer_borders(3);
   }
 }
+
+//* Adaptive styles ***********//
+
+@include for_tablet_only {
+  .expertise_list-item {
+    width: 50%;
+    @include hide_outer_borders(2);
+  }
+}
+
+@include for_big_phone_only {
+  .expertise_list-item {
+    width: 50%;
+    @include hide_outer_borders(2);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .expertise_list-item {
+    width: 100%;
+    padding: 20px 20%;
+    @include hide_outer_borders(1);
+  }
+}
+
+@include for_phone {
+  .expertise_list-item {
+    padding: 10px 10%;
+  }
+}
+
+@include for_small_phone {
+  .expertise_list-item {
+    padding: 10px 10px;
+  }
+}

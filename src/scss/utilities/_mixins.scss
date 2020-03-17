@@ -2,23 +2,33 @@
   @media only screen and (max-width: 320px) { @content; }
 }
 
+@mixin for_big_phone {
+  @media only screen and (min-height: 321px) and (max-width: 600px) { @content; }
+}
+
 @mixin for_phone {
   @media only screen and (max-width: 600px) { @content; }
+}
+
+@mixin for_big_phone_only {
+  @media only screen and (min-width: 601px) and (max-width: 800px) { @content; }
 }
 
 @mixin for_big_phone {
   @media only screen and (max-width: 800px) { @content; }
 }
 
-@mixin for_tablet {
-  @media only screen and (max-width: 1024px) { @content; }
-}
-
 @mixin for_tablet_only {
   @media only screen and (min-width: 801px) and (max-width: 1024px) { @content; }
 }
 
+@mixin for_tablet {
+  @media only screen and (max-width: 1024px) { @content; }
+}
 
+@mixin for_big_tablet_only {
+  @media only screen and (min-width: 1025px) and (max-width: 1280px) { @content; }
+}
 
 @mixin for_big_tablet {
   @media only screen and (max-width: 1280px) { @content; }
@@ -27,6 +37,8 @@
 @mixin for_desktop {
   @media only screen and (min-width: 1281px) { @content; }
 }
+
+
 
 @mixin hide_outer_borders($items_per_row) {
   &:nth-child(#{$items_per_row}n) {
