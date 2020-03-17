@@ -11,7 +11,6 @@ It contains various visual additions, carousels and self-written Gallery viewer.
 * Page: Adapt for mobile devices
 * Page: Fix IE flexbox bugs and other possible incompatibles (maybe)
 * Page: Add sticky page navigation
-* Modal window: Add menu option
 * Gallery viewer: Add thumbnail navigation
 * Gallery viewer: Add animations
 * Add Babel
@@ -21,6 +20,8 @@ It contains various visual additions, carousels and self-written Gallery viewer.
 * JQuery
 * Owl Carousel 2
 * Autosize
+
+Web page uses a mix of BEM and SMACSS.
 
 ### Credits:
 * Tajam PSD design template by [Aji Darmawan](https://dribbble.com/aji)

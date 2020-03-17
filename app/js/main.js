@@ -3,12 +3,22 @@
 class Modal {
   constructor(options) {
     this.$page = $('body');
+
+    if (options.addFullscreenBtn) {
+      // fullscreen button won't show if browser doesn't support Fullscreen API
+      options.addFullscreenBtn = this.checkFullscreenSupport;
+    }
     this.options = options;
 
     this
       .buildOverlay()
-      .buildContentWindow()
-      .setUpEventListeners();
+      .buildContentWindow();
+
+    if (options.buildMenu) {
+      this.buildMenu();
+    }
+
+    this.setUpEventListeners();
   }
 
   buildOverlay() {
@@ -53,8 +63,63 @@ class Modal {
     return this;
   }
 
+  buildMenu() {
+    const {options, $modalOverlay} = this;
+
+    const $menu = this.$menu = $(document.createElement('div'))
+      .addClass('modal_menu')
+      .appendTo($modalOverlay);
+
+    if (options.addFullscreenBtn) {
+      this.$fullscreenBtn = $(document.createElement('span'))
+        .addClass('modal_btn modal_btn-fullSize')
+        .appendTo($menu);
+
+      this.setFullscreenBtnIcon();
+    }
+
+    if (options.addCloseBtn || options.addCloseBtn === undefined) {
+      this.$closeBtn = $(document.createElement('span'))
+        .html('&#xea0f;')
+        .addClass('modal_btn modal_btn-close')
+        .appendTo($menu);
+    }
+
+    return this.styleMenu();
+  }
+
+  styleMenu() {
+    const {$menu, $fullscreenBtn, $closeBtn} = this;
+
+    $menu.css({
+      'position': 'fixed',
+      'top': '0',
+      'display': 'flex',
+      'align-items': 'center',
+      'justify-content': 'flex-end',
+      'height': '100px',
+      'width': '100%',
+      'padding': '10px',
+      'background-color': 'rgba(0, 0, 0, 0.8)',
+      'cursor': 'auto',
+    });
+
+    $fullscreenBtn.add($closeBtn)
+      .css({
+        'margin-left': '30px',
+        'font-family': 'icomoon',
+        'font-size': '30px',
+        'color': 'white',
+        'cursor': 'pointer',
+      });
+
+    return this;
+  }
+
   setUpEventListeners() {
-    this.$modalOverlay.on('click', function (e) {
+    const {$modalOverlay, $closeBtn, $fullscreenBtn} = this;
+
+    $modalOverlay.on('click', function (e) {
       if ($(e.target).is('.modal-overlay')) this.closeModal();
     }.bind(this));
 
@@ -62,7 +127,71 @@ class Modal {
       if (e.key === 'Escape') this.closeModal();
     }.bind(this));
 
+    if ($closeBtn) {
+      $closeBtn.on('click', this.closeModal.bind(this));
+    }
+
+    if ($fullscreenBtn) {
+      $fullscreenBtn.on('click', this.toggleFullscreen.bind(this));
+      // Handling promise doesn't work properly
+      document.addEventListener('fullscreenchange', function() {
+        this.setFullscreenBtnIcon();
+      }.bind(this));
+    }
+
     return this;
+  }
+
+  checkFullscreenSupport() {
+    return document.fullscreenEnabled
+      || document.webkitFullScreenEnabled
+      || document.mozFullScreenEnabled
+      || document.msFullScreenEnabled;
+  }
+
+  inFullscreen() {
+    return Boolean(document.fullscreenElement
+      || document.webkitFullscreenElement
+      || document.mozFullScreenElement
+      || document.msFullscreenElement);
+  }
+
+  openFullscreen(el) {
+    let promise;
+
+    if (el.requestFullscreen) promise = el.requestFullscreen();
+    else if (el.webkitRequestFullScreen) promise = el.webkitRequestFullScreen();
+    else if (el.mozRequestFullScreen) promise = el.mozRequestFullScreen();
+    else if (el.msRequestFullscreen) promise = el.msRequestFullscreen();
+
+    return promise;
+  }
+
+  closeFullscreen() {
+    let promise;
+
+    if (document.exitFullscreen) promise = document.exitFullscreen();
+    else if (document.webkitExitFullscreen) promise = document.webkitExitFullscreen();
+    else if (document.mozCancelFullScreen) promise = document.mozCancelFullScreen();
+    else if (document.msExitFullscreen) promise = document.msExitFullscreen();
+
+    return promise;
+  }
+
+  toggleFullscreen() {
+    if (this.inFullscreen()) {
+      this.closeFullscreen();
+    } else {
+      this.openFullscreen(this.$modalOverlay.get(0));
+    }
+  }
+
+  setFullscreenBtnIcon() {
+    if (this.inFullscreen()) {
+      this.$fullscreenBtn.html('&#xe98c;');
+    } else {
+      this.$fullscreenBtn.html('&#xe98b;');
+    }
   }
 
   showModal() {
@@ -84,7 +213,11 @@ class Modal {
 
 class ModalGalleryViewer extends Modal {
   constructor(images, $clickedImage) {
-    super();
+    super({
+      buildMenu: true,
+      addFullscreenBtn: true,
+      addCloseBtn: true,
+    });
 
     this.$clickedImage = $clickedImage;
     this.currentIndex = images.getImageIndex($clickedImage);
