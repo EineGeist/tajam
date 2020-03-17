@@ -33,3 +33,26 @@
 .about_video {
   width: 100%;
 }
+
+//* Adaptive styles ***********//
+
+@include for_big_phone {
+  .about_logo-container {
+    display: none;
+  }
+
+  .about_promo {
+    h2 {
+      text-align: center;
+    }
+
+    width: 100%;
+    padding: 0 10%;
+  }
+}
+
+@include for_phone {
+  .about_promo {
+    padding: 0 10px;
+  }
+}
