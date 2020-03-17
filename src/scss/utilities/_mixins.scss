@@ -2,7 +2,7 @@
   @media only screen and (max-width: 320px) { @content; }
 }
 
-@mixin for_big_phone {
+@mixin for_phone_only {
   @media only screen and (min-height: 321px) and (max-width: 600px) { @content; }
 }
 
