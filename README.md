@@ -10,7 +10,6 @@ It contains various visual additions, carousels and self-written Gallery viewer.
 <hr>
 
 ### Future plans:
-* Page: Adapt for mobile devices
 * Page: Fix IE flexbox bugs and other possible incompatibles (maybe)
 * Page: Add sticky page navigation
 * Gallery viewer: Add thumbnail navigation
