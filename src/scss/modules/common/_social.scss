@@ -1,5 +1,5 @@
 .social-list {
-  @include vp-flexbox();
+  @include vp-flexbox;
 }
 
 .social-item {
@@ -11,7 +11,7 @@
 }
 
 .social-icon {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(center);
   @include vp-justify-content(center);
   height: 35px;
@@ -63,10 +63,6 @@
 //* Adaptive styles ***********//
 
 @include for_big_tablet {
-  .social-item {
-    margin-right: 15px;
-  }
-
   .social-icon {
     width: 42px;
     height: 42px;

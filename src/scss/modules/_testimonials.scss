@@ -14,17 +14,21 @@
   padding: 5rem 80px 0;
   text-align: center;
 
+  & > * {
+    max-width: 100%; //IE fix
+  }
+
   &::before {
     content: "\201C";
     position: absolute;
     top: 30px;
-
-    display: block;
-    width: 100%;
+    left: 50%;
 
     font-family: 'Playfair Display', serif;
     font-size: 100px;
     line-height: 0;
+
+    @include vp-transform(translateX(-50%));
   }
 }
 

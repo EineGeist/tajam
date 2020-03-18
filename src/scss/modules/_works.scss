@@ -1,5 +1,5 @@
 .works_top {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(center);
   @include vp-justify-content(space-between);
 }
@@ -10,7 +10,7 @@
 }
 
 .works_images-container {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row wrap);
   @include vp-align-items(start);
   @include vp-justify-content(center);
@@ -23,7 +23,7 @@
   position: relative;
   width: 16.66%;
   cursor: pointer;
-  @include vp-overflow-y(hidden);
+  @include vp-overflow(hidden);
 
   &:hover .works_caption {
     top: 0;
@@ -39,7 +39,7 @@
   position: absolute;
   top: 100%;
 
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column);
   @include vp-align-items(center);
   @include vp-justify-content(center);
@@ -58,6 +58,7 @@
   @include vp-transition(0.3s ease);
 
   & > * {
+    max-width: 100%; // IE fix
     cursor: auto;
   }
 
@@ -72,7 +73,7 @@
 }
 
 .works_bottom {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-justify-content(center);
 }
 

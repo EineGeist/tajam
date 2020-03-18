@@ -94,6 +94,7 @@ class Modal {
     $menu.css({
       'position': 'fixed',
       'top': '0',
+      'left': '0',
       'display': 'flex',
       'align-items': 'center',
       'justify-content': 'flex-end',
@@ -104,8 +105,10 @@ class Modal {
       'cursor': 'auto',
     });
 
-    $fullscreenBtn.add($closeBtn)
+    $fullscreenBtn
+      .add($closeBtn)
       .css({
+        'max-width': '100%',
         'margin-left': '30px',
         'font-family': 'icomoon',
         'font-size': '30px',
@@ -381,7 +384,8 @@ class ImageGalleryFigure {
       .html($figcaptionContent)
       .css({
         'position': 'absolute',
-        'bottom': 0,
+        'bottom': '0',
+        'left': '0',
         'display': 'flex',
         'justify-content': 'center',
         'width': '100%',

@@ -1,11 +1,12 @@
 .home_container {
   position: relative;
-  @include vp-flex(1);
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column nowrap);
   @include vp-align-items(center);
   @include vp-justify-content(center);
+  min-height: 670px;
   padding: 15px 10px 70px 10px;
+  text-align: center;
 }
 
 .home_top {
@@ -14,13 +15,13 @@
   left: 10px;
   right: 10px;
 
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(center);
   @include vp-justify-content(space-between);
 }
 
 .page-nav {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row nowrap);
 
   font-family: "Hammersmith One", sans-serif;
@@ -39,7 +40,7 @@
 }
 
 .home_container .home_carousel {
-  position: initial;
+  position: static;
 }
 
 .home_dots {
@@ -74,11 +75,15 @@
 }
 
 .home_promo {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column nowrap);
   @include vp-align-items(center);
   @include vp-justify-content(center);
   padding: 0 calc(8.33% + 10px); //8.33 = 1/12
+
+  & > * {
+    max-width: 100%; //IE fix
+  }
 }
 
 .home_promo-title {

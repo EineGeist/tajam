@@ -1,5 +1,5 @@
 .person-cards {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row wrap);
   @include vp-justify-content(space-between);
   width: 100%;
@@ -16,10 +16,14 @@
 }
 
 .person-photo-caption {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column nowrap);
   @include vp-align-items(center);
   @include vp-justify-content(center);
   height: 80px;
   border: 1px solid $person-caption-border-color;
+}
+
+.person-name {
+  font-weight: bold;
 }

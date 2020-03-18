@@ -1,5 +1,5 @@
 .footer_container {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column nowrap);
   padding: 70px 0;
 
@@ -8,12 +8,12 @@
 }
 
 .footer_panels {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row wrap);
 }
 
 .footer_panel {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column nowrap);
 
   width: 33.33%;
@@ -21,7 +21,7 @@
 }
 
 .footer_header {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(center);
   min-height: 50px;
   margin-bottom: 20px;
@@ -56,13 +56,13 @@
 }
 
 .subscribe_content {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column nowrap);
   @include vp-flex(1);
 }
 
 .subscribe_form {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex(1);
   margin-bottom: 20px;
 }
@@ -130,7 +130,7 @@
 }
 
 .footer_bottom {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-justify-content(space-between);
   width: 100%;
   margin-top: 50px;

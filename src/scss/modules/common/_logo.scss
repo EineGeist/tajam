@@ -1,5 +1,5 @@
 .logo {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row nowrap);
   @include vp-justify-content(space-between);
   @include vp-align-items(center);

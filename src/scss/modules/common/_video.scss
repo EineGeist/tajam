@@ -1,7 +1,7 @@
 .video-container {
   position: relative;
 
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(center);
   @include vp-justify-content(center);
   padding: 0;
@@ -10,8 +10,6 @@
 }
 
 .start-playing {
-  position: absolute;
-  margin: auto;
   text-align: center;
 
   + .video {

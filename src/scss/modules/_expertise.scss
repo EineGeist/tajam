@@ -15,6 +15,7 @@
 .expertise_list {
   @include vp-flexbox();
   @include vp-flex-flow(row wrap);
+  max-width: 100%; // IE fix
 }
 
 .expertise_list-item {

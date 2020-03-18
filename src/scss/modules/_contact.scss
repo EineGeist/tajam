@@ -1,5 +1,5 @@
 .contact_container {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row wrap);
   @include vp-justify-content(space-between);
 }
@@ -94,20 +94,20 @@ textarea.contact_text-input {
 //* Client ********************//
 
 .client {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(column wrap);
   width: 41.66%; // 5/12
 }
 
 .client_grid {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row wrap);
   @include vp-justify-content(space-between);
   width: 100%;
 }
 
 .client_grid-item {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(center);
   @include vp-justify-content(center);
   width: 40%;
@@ -156,5 +156,13 @@ textarea.contact_text-input {
   .client,
   .contact-and-client-divider {
     width: 100%;
+  }
+
+  .client_grid {
+    @include vp-justify-content(center);
+  }
+
+  .client_grid-item:nth-child(odd) {
+    margin-right: 10px;
   }
 }
