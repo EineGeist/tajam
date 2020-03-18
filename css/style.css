@@ -526,7 +526,7 @@ body {
 
 .preloader_loading-sign {
   font-family: "Arial", sans-serif;
-  font-size: 10em;
+  font-size: 140px;
   line-height: 1;
   letter-spacing: 0.05em;
   color: #00ccbc;
@@ -554,6 +554,21 @@ body {
   border-left: 0;
 }
 
+@media only screen and (max-width: 800px) {
+  .preloader_loading-sign {
+    font-size: 8em;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .preloader_loading-sign {
+    font-size: 5em;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .preloader_loading-sign {
+    font-size: 2em;
+  }
+}
 .home_container {
   position: relative;
   -webkit-box-flex: 1;
