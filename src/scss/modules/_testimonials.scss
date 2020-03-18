@@ -133,9 +133,7 @@
 
 @include for_big_phone {
   .testimony {
-    @include vp-align-items(flex-start);
     padding: 0 10% 0;
-    text-align: left;
 
     &::before {
       content: none;
@@ -145,7 +143,14 @@
 
 @include for_phone {
   .testimony {
+    @include vp-align-items(start);
     padding: 0 10px;
+    text-align: left;
+  }
+
+  .testimony_author,
+  .testimony_author-position {
+    margin-left: 20px;
   }
 
   .testimonials_dots {

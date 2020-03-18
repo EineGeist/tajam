@@ -77,9 +77,15 @@ hr {
   background-color: rgba(65, 61, 75, 0.3);
 }
 
-@include for_big_tablet() {
+@include for_big_tablet {
   html {
     font-size: 100%;
+  }
+}
+
+@include for_big_phone {
+  h2 {
+    font-size: 1.37em;
   }
 }
 

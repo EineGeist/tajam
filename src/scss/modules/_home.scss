@@ -92,6 +92,7 @@
   line-height: 1.2;
   letter-spacing: 0.01em;
   font-weight: $black;
+  text-align: center;
 
   &::after {
     @include separator($complementary-color, 1px, -25px);
@@ -208,13 +209,22 @@ $icon-bottom-position: 30px;
 
 @include for_big_phone {
   .home_promo {
-    padding: 0;
+    padding: 0 10%;
   }
 
   .home_promo-title {
     font-size: 1.78em;
   }
 }
+
+@include for_phone {
+  .home_promo {
+    padding: 0 10px;
+    text-align: left;
+  }
+}
+
+//* Animations ***********//
 
 @keyframes cross_icon-top {
   0% {

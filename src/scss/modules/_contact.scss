@@ -87,6 +87,10 @@ textarea.contact_text-input {
   resize: none;
 }
 
+.contact-and-client-divider {
+  display: none;
+}
+
 //* Client ********************//
 
 .client {
@@ -127,6 +131,10 @@ textarea.contact_text-input {
 }
 
 @include for_big_phone {
+  .contact-and-client-divider {
+    display: block;
+  }
+
   .contact_container {
     @include vp-flex-flow(column nowrap);
     @include vp-align-items(center);
