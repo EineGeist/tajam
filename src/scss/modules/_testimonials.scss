@@ -122,3 +122,57 @@
     background-image: url("../files/testimonials_photos/5.jpg");
   }
 }
+
+//* Adaptive styles ***********//
+
+@include for_tablet {
+  .testimony {
+    padding: 80px 10% 0;
+  }
+}
+
+@include for_big_phone {
+  .testimony {
+    @include vp-align-items(flex-start);
+    padding: 0 10% 0;
+    text-align: left;
+
+    &::before {
+      content: none;
+    }
+  }
+}
+
+@include for_phone {
+  .testimony {
+    padding: 0 10px;
+  }
+
+  .testimonials_dots {
+    position: relative;
+    left: 50px;
+    height: 70px;
+    width: 70px;
+    overflow-x: hidden;
+  }
+
+  .testimonials_dot {
+    position: absolute;
+    left: -70px;
+    margin: 0;
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  .testimonials_nav {
+    .owl-prev {
+      left: 10px;
+    }
+
+    .owl-next {
+      left: 140px;
+    }
+  }
+}
