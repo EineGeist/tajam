@@ -70,6 +70,13 @@ button {
   outline: 0;
 }
 
+hr {
+  height: 2px;
+  width: 100%;
+  margin: 34px 0;
+  background-color: rgba(65, 61, 75, 0.3);
+}
+
 @include for_big_tablet() {
   html {
     font-size: 100%;

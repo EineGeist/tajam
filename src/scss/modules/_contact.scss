@@ -1,6 +1,6 @@
 .contact_container {
   @include vp-flexbox();
-  @include vp-flex-flow(row nowrap);
+  @include vp-flex-flow(row wrap);
   @include vp-justify-content(space-between);
 }
 
@@ -8,6 +8,8 @@
 .client {
   padding: 0 10px;
 }
+
+//* Contact *******************//
 
 .contact {
   width: 50%;
@@ -85,7 +87,7 @@ textarea.contact_text-input {
   resize: none;
 }
 
-// client
+//* Client ********************//
 
 .client {
   @include vp-flexbox();
@@ -106,4 +108,45 @@ textarea.contact_text-input {
   @include vp-justify-content(center);
   width: 40%;
   margin-bottom: 50px;
+
+  & > img {
+    max-width: 100%;
+  }
+}
+
+//* Adaptive styles ***********//
+
+@include for_tablet {
+  .client {
+    width: 45%;
+  }
+
+  .client_grid-item {
+    width: 45%;
+  }
+}
+
+@include for_big_phone {
+  .contact_container {
+    @include vp-flex-flow(column nowrap);
+    @include vp-align-items(center);
+  }
+
+  .contact,
+  .client,
+  .contact-and-client-divider {
+    width: 75%;
+  }
+
+  .contact_title {
+    text-align: center;
+  }
+}
+
+@include for_phone {
+  .contact,
+  .client,
+  .contact-and-client-divider {
+    width: 100%;
+  }
 }
