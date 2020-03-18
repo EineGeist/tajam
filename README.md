@@ -5,12 +5,14 @@ Darmawan.
 This is a web page created according to [Aji's PSD](https://dribbble.com/shots/2540971-Agency-Website-PSD).
 It contains various visual additions, carousels and self-written Gallery viewer.
 
-[Live demo](https://einegeist.github.io/tajam/)
+<a href="https://einegeist.github.io/tajam/" target="_blank">Live demo</a>
+
+* Supports +IE11
+* Mobile friendly
 
 <hr>
 
 ### Future plans:
-* Page: Fix IE flexbox bugs and other possible incompatibles (maybe)
 * Page: Add sticky page navigation
 * Gallery viewer: Add thumbnail navigation
 * Gallery viewer: Add animations
