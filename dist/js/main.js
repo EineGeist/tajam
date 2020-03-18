@@ -653,28 +653,29 @@ class EventListeners {
 const pageNavigation = {
   isCollapsed: true,
   $pageNavigation: $('.page-nav'),
+  $button: $('.page-nav_toggle'),
 
   toggleListener() {
-    const {$pageNavigation} = this;
-    const $button = $('.page-nav_toggle');
-
-    $button.on('click', () => {
-      const isCollapsed = this.isCollapsed = !this.isCollapsed;
-
-      if (isCollapsed) {
-        $pageNavigation.removeClass('is-expand');
-        $button
-          .removeClass('is-cross')
-          .addClass('is-menu');
-      } else {
-        $pageNavigation.addClass('is-expand');
-        $button
-          .removeClass('is-menu')
-          .addClass('is-cross');
-      }
-    });
+    this.$button.on('click', this.toggle.bind(this));
 
     return this;
+  },
+
+  toggle() {
+    const {$pageNavigation, $button} = this;
+    const isCollapsed = this.isCollapsed = !this.isCollapsed;
+
+    if (isCollapsed) {
+      $pageNavigation.removeClass('is-expand');
+      $button
+        .removeClass('is-cross')
+        .addClass('is-menu');
+    } else {
+      $pageNavigation.addClass('is-expand');
+      $button
+        .removeClass('is-menu')
+        .addClass('is-cross');
+    }
   },
 
   anchorLinkListener() {
@@ -685,6 +686,9 @@ const pageNavigation = {
       $('html').add('body').animate({
         scrollTop: $($target.attr('href')).offset().top
       }, 400, 'swing');
+      if (window.innerWidth <= 1024) {
+        this.toggle();
+      }
     });
 
     return this;

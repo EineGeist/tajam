@@ -187,9 +187,12 @@ $icon-bottom-position: 30px;
     bottom: 100%;
 
     @include vp-flex-flow(column nowrap);
-    @include vp-align-items(flex-end);
-    padding: 120px 30px 30px;
-    background-color: rgba($main-color, 0.6);
+    @include vp-align-items(center);
+    @include vp-justify-content(center);
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($main-color, 0.8);
+    font-size: 2em;
 
     @include vp-transition(0.3s ease);
 
