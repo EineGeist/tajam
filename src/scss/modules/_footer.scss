@@ -142,12 +142,97 @@
 .footer_bottom-links {
   @include vp-flexbox();
   text-transform: uppercase;
+}
 
-  & > a {
-    margin-right: 1.78em;
+.footer_bottom-link {
+  margin-right: 1.78em;
 
-    &:last-child {
-      margin-right: 0;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+//* Adaptive styles ***********//
+
+@include for_tablet {
+  .footer_panel-promo {
+    @include vp-flex-flow(row nowrap);
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer_panel-contacts,
+  .footer_panel-subscribe {
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  .footer_promo-header,
+  .footer_promo {
+    width: 50%;
+  }
+}
+
+@include for_big_phone_only {
+  .footer_social-list {
+    @include vp-justify-content(space-between);
+
+    .social-item {
+      margin-right: 4px;
     }
+  }
+}
+
+@include for_phone {
+  .footer_panel-promo {
+    @include vp-flex-flow(column nowrap);
+  }
+
+  .footer_panel {
+    width: 100%;
+  }
+
+  .footer_promo-header,
+  .footer_promo {
+    width: 100%;
+  }
+
+  .footer_bottom {
+    @include vp-flex-flow(column nowrap);
+    @include vp-align-items(center);
+  }
+}
+
+@include for_small_phone {
+  .footer_panel-subscribe {
+    margin-bottom: 0;
+  }
+
+  .footer_social-list {
+    @include vp-flex-flow(row wrap);
+    @include vp-justify-content(space-between);
+
+    .social-item {
+      margin: 0 0 21px;
+      width: 33.33%;
+    }
+
+    .social-icon {
+      margin: 0 auto;
+    }
+  }
+
+  .footer_bottom {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .footer_bottom-links {
+    @include vp-flex-flow(column nowrap);
+    margin-bottom: 50px;
+  }
+
+  .footer_bottom-link {
+    margin: 0 0 10px;
   }
 }

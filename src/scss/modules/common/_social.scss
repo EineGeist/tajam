@@ -16,7 +16,7 @@
   @include vp-justify-content(center);
   height: 35px;
   width: 35px;
-
+  margin: 0;
   border: 1px $contrast-color solid;
   border-radius: 50%;
 
@@ -57,5 +57,19 @@
 
   &-youtube::before {
     content: "\ea9d";
+  }
+}
+
+//* Adaptive styles ***********//
+
+@include for_big_tablet {
+  .social-item {
+    margin-right: 15px;
+  }
+
+  .social-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 21px;
   }
 }
