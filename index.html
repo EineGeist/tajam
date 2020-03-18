@@ -27,22 +27,25 @@
                 <span class="logo-title">tajam</span>
             </a>
 
-            <button class="page-navigation-open btn">&#xe9bd;</button>
-            <button class="page-navigation-close btn">&#xea0f;</button>
-            <ul class="page-navigation">
-                <li class="page-navigation-item"><a href="#home">Home</a></li>
-                <li class="page-navigation-item"><a href="#about">About</a></li>
-                <li class="page-navigation-item"><a href="#expertise">Expertise</a></li>
-                <li class="page-navigation-item"><a href="#team">Teams</a></li>
-                <li class="page-navigation-item"><a href="#works">Works</a></li>
-                <li class="page-navigation-item"><a href="#testimonials">People say</a></li>
-                <li class="page-navigation-item"><a href="#contact">Contact</a></li>
+            <button class="page-nav_toggle is-menu btn">
+                <span class="page-nav_icon page-nav_icon-top"></span>
+                <span class="page-nav_icon page-nav_icon-middle"></span>
+                <span class="page-nav_icon page-nav_icon-bottom"></span>
+            </button>
+            <ul class="page-nav">
+                <li class="page-nav_item"><a href="#home">Home</a></li>
+                <li class="page-nav_item"><a href="#about">About</a></li>
+                <li class="page-nav_item"><a href="#expertise">Expertise</a></li>
+                <li class="page-nav_item"><a href="#team">Teams</a></li>
+                <li class="page-nav_item"><a href="#works">Works</a></li>
+                <li class="page-nav_item"><a href="#testimonials">People say</a></li>
+                <li class="page-nav_item"><a href="#contact">Contact</a></li>
             </ul>
         </div>
 
         <div class="home_carousel owl-carousel">
             <div class="home_promo">
-                <span class="home_title"><strong>We Are Awesome Creative Agency</strong></span>
+                <span class="home_promo-title"><strong>We Are Awesome Creative Agency</strong></span>
                 <p class="home_promo-text">This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit
                     auctor
                     aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis
@@ -208,7 +211,7 @@
             </header>
 
             <div class="team_cards person-cards">
-                <figure class="person-card">
+                <figure class="team_person-card person-card">
                     <img class="person-photo" src="files/team_photos/1.jpg" alt="">
                     <figcaption class="person-photo-caption">
                         <span class="person-name">Semf Ucuk</span>
@@ -216,7 +219,7 @@
                     </figcaption>
                 </figure>
 
-                <figure class="person-card">
+                <figure class="team_person-card person-card">
                     <img class="person-photo" src="files/team_photos/2.jpg" alt="">
                     <figcaption class="person-photo-caption">
                         <span class="person-name">Dik Adalin</span>
@@ -224,7 +227,7 @@
                     </figcaption>
                 </figure>
 
-                <figure class="person-card">
+                <figure class="team_person-card person-card">
                     <img class="person-photo" src="files/team_photos/3.jpg" alt="">
                     <figcaption class="person-photo-caption">
                         <span class="person-name">Jeng Kol</span>
@@ -232,7 +235,7 @@
                     </figcaption>
                 </figure>
 
-                <figure class="person-card">
+                <figure class="team_person-card person-card">
                     <img class="person-photo" src="files/team_photos/4.jpg" alt="">
                     <figcaption class="person-photo-caption">
                         <span class="person-name">Pet Romak</span>
@@ -247,9 +250,8 @@
     </section>
 
     <section class="l-section" id="works">
-
         <div class="l-content works_top">
-            <h2>Our works</h2>
+            <h2 class="works_tittle">Our works</h2>
             <a class="works_link" href="#">See All Project in dribbble</a>
         </div>
 
@@ -396,7 +398,6 @@
                 <button class="btn btn--wide gallery-collapse-toggle">Load more</button>
             </div>
         </article>
-
     </section>
 
     <section class="l-section" id="testimonials">
@@ -521,6 +522,8 @@
                 </form>
             </section>
 
+            <hr class="contact-and-client-divider">
+
             <section class="client">
                 <h2 class="contact_title">Our happy client</h2>
                 <ul class="client_grid">
@@ -620,7 +623,7 @@
                         <input class="subscribe_submit" type="submit" name="submit" value="">
                     </form>
 
-                    <ul class="social-list">
+                    <ul class="footer_social-list social-list">
                         <li class="social-item"><a class="social-icon icon-facebook" href="#" target="_blank"></a></li>
                         <li class="social-item"><a class="social-icon icon-twitter" href="#" target="_blank"></a></li>
                         <li class="social-item"><a class="social-icon icon-dribble" href="#" target="_blank"></a></li>
@@ -635,9 +638,9 @@
 
         <div class="footer_bottom">
             <div class="footer_bottom-links">
-                <a href="#">Help</a>
-                <a href="#">Terms & Condition</a>
-                <a href="#">Privacy</a>
+                <a class="footer_bottom-link" href="#">Help</a>
+                <a class="footer_bottom-link" href="#">Terms & Condition</a>
+                <a class="footer_bottom-link" href="#">Privacy</a>
             </div>
             <span>Copyright &copy; 2015 - Tajem Creative</span>
         </div>

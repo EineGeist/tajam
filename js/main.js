@@ -3,12 +3,22 @@
 class Modal {
   constructor(options) {
     this.$page = $('body');
+
+    if (options.addFullscreenBtn) {
+      // fullscreen button won't show if browser doesn't support Fullscreen API
+      options.addFullscreenBtn = this.checkFullscreenSupport;
+    }
     this.options = options;
 
     this
       .buildOverlay()
-      .buildContentWindow()
-      .setUpEventListeners();
+      .buildContentWindow();
+
+    if (options.buildMenu) {
+      this.buildMenu();
+    }
+
+    this.setUpEventListeners();
   }
 
   buildOverlay() {
@@ -53,8 +63,63 @@ class Modal {
     return this;
   }
 
+  buildMenu() {
+    const {options, $modalOverlay} = this;
+
+    const $menu = this.$menu = $(document.createElement('div'))
+      .addClass('modal_menu')
+      .appendTo($modalOverlay);
+
+    if (options.addFullscreenBtn) {
+      this.$fullscreenBtn = $(document.createElement('span'))
+        .addClass('modal_btn modal_btn-fullSize')
+        .appendTo($menu);
+
+      this.setFullscreenBtnIcon();
+    }
+
+    if (options.addCloseBtn || options.addCloseBtn === undefined) {
+      this.$closeBtn = $(document.createElement('span'))
+        .html('&#xea0f;')
+        .addClass('modal_btn modal_btn-close')
+        .appendTo($menu);
+    }
+
+    return this.styleMenu();
+  }
+
+  styleMenu() {
+    const {$menu, $fullscreenBtn, $closeBtn} = this;
+
+    $menu.css({
+      'position': 'fixed',
+      'top': '0',
+      'display': 'flex',
+      'align-items': 'center',
+      'justify-content': 'flex-end',
+      'height': '100px',
+      'width': '100%',
+      'padding': '10px',
+      'background-color': 'rgba(0, 0, 0, 0.8)',
+      'cursor': 'auto',
+    });
+
+    $fullscreenBtn.add($closeBtn)
+      .css({
+        'margin-left': '30px',
+        'font-family': 'icomoon',
+        'font-size': '30px',
+        'color': 'white',
+        'cursor': 'pointer',
+      });
+
+    return this;
+  }
+
   setUpEventListeners() {
-    this.$modalOverlay.on('click', function (e) {
+    const {$modalOverlay, $closeBtn, $fullscreenBtn} = this;
+
+    $modalOverlay.on('click', function (e) {
       if ($(e.target).is('.modal-overlay')) this.closeModal();
     }.bind(this));
 
@@ -62,7 +127,71 @@ class Modal {
       if (e.key === 'Escape') this.closeModal();
     }.bind(this));
 
+    if ($closeBtn) {
+      $closeBtn.on('click', this.closeModal.bind(this));
+    }
+
+    if ($fullscreenBtn) {
+      $fullscreenBtn.on('click', this.toggleFullscreen.bind(this));
+      // Handling promise doesn't work properly
+      document.addEventListener('fullscreenchange', function() {
+        this.setFullscreenBtnIcon();
+      }.bind(this));
+    }
+
     return this;
+  }
+
+  checkFullscreenSupport() {
+    return document.fullscreenEnabled
+      || document.webkitFullScreenEnabled
+      || document.mozFullScreenEnabled
+      || document.msFullScreenEnabled;
+  }
+
+  inFullscreen() {
+    return Boolean(document.fullscreenElement
+      || document.webkitFullscreenElement
+      || document.mozFullScreenElement
+      || document.msFullscreenElement);
+  }
+
+  openFullscreen(el) {
+    let promise;
+
+    if (el.requestFullscreen) promise = el.requestFullscreen();
+    else if (el.webkitRequestFullScreen) promise = el.webkitRequestFullScreen();
+    else if (el.mozRequestFullScreen) promise = el.mozRequestFullScreen();
+    else if (el.msRequestFullscreen) promise = el.msRequestFullscreen();
+
+    return promise;
+  }
+
+  closeFullscreen() {
+    let promise;
+
+    if (document.exitFullscreen) promise = document.exitFullscreen();
+    else if (document.webkitExitFullscreen) promise = document.webkitExitFullscreen();
+    else if (document.mozCancelFullScreen) promise = document.mozCancelFullScreen();
+    else if (document.msExitFullscreen) promise = document.msExitFullscreen();
+
+    return promise;
+  }
+
+  toggleFullscreen() {
+    if (this.inFullscreen()) {
+      this.closeFullscreen();
+    } else {
+      this.openFullscreen(this.$modalOverlay.get(0));
+    }
+  }
+
+  setFullscreenBtnIcon() {
+    if (this.inFullscreen()) {
+      this.$fullscreenBtn.html('&#xe98c;');
+    } else {
+      this.$fullscreenBtn.html('&#xe98b;');
+    }
   }
 
   showModal() {
@@ -84,7 +213,11 @@ class Modal {
 
 class ModalGalleryViewer extends Modal {
   constructor(images, $clickedImage) {
-    super();
+    super({
+      buildMenu: true,
+      addFullscreenBtn: true,
+      addCloseBtn: true,
+    });
 
     this.$clickedImage = $clickedImage;
     this.currentIndex = images.getImageIndex($clickedImage);
@@ -307,17 +440,21 @@ class WorksGallery {
   constructor($gallery) {
     this.$gallery = $gallery;
     this.$imagesContainer = $gallery.children('.works_images-container');
+    this.$images = $gallery.find('.works_image');
     this.isCollapsed = true;
 
+    this.setContainerHeight(0);
     this.setUpEventListeners();
   }
 
   setUpEventListeners() {
-    // To turn it on and off any time
-    this.fixContainerHeight = this.fixContainerHeight.bind(this);
-
     this.$gallery.on('click', this.toggleButtonHandler.bind(this));
     this.$imagesContainer.on('click', this.openGalleryViewerHandler.bind(this));
+    $(window).on('resize', this.pageResizeHandler.bind(this));
+  }
+
+  pageResizeHandler() {
+    this.setContainerHeight(0);
   }
 
   openGalleryViewerHandler(e) {
@@ -348,39 +485,26 @@ class WorksGallery {
 
     if (this.isCollapsed) {
       $toggleButton.text('Load more');
-      $(window).off('resize', this.fixContainerHeight);
     } else {
       $toggleButton.text('Hide');
-      $(window).on('resize', this.fixContainerHeight);
     }
 
-    this.setContainerHeight();
+    this.setContainerHeight(300);
   }
 
-  setContainerHeight() {
+  setContainerHeight(animationDuration = 0) {
     const {isCollapsed, $imagesContainer} = this;
 
     if (isCollapsed) {
+      const imageHeight = this.$images.height();
       $imagesContainer.animate({
-        'max-height': '400px'
-      }, 300);
+        'max-height': imageHeight * 2
+      }, animationDuration);
     } else {
       $imagesContainer.animate({
         'max-height': $imagesContainer.get(0).scrollHeight
-      }, 300);
+      }, animationDuration);
     }
-  }
-
-  // As the width of the clientWidth increases, gallery
-  // previews go up, but not the container height since it
-  // has been set to scrollHeight due to JQuery and CSS
-  // can't animate "auto" value.
-  fixContainerHeight() {
-    const {$imagesContainer} = this;
-
-    $imagesContainer.css(
-      'max-height', $imagesContainer.get(0).scrollHeight
-    )
   }
 }
 
@@ -478,7 +602,6 @@ class EventListeners {
     this.$page = $('body');
 
     this.$page.on('click', this.preventPlaceholderScroll);
-    $('.page-navigation').on('click', this.anchorLinkSmoothScroll);
     $('.video-container').on('click', this.videoPlayHandler);
     $('form').on({
       'change': this.inputFocusoutHandler,
@@ -490,15 +613,6 @@ class EventListeners {
     const $link = $(e.target);
 
     if (isPlaceholderLink($link)) e.preventDefault();
-  }
-
-  anchorLinkSmoothScroll(e) {
-    const $target = $(e.target);
-    if (!isAnchorLink($target)) return;
-
-    $('html').add('body').animate({
-      scrollTop: $($target.attr('href')).offset().top
-    }, 400, 'swing');
   }
 
   videoPlayHandler(e) {
@@ -536,12 +650,58 @@ class EventListeners {
   }
 }
 
+const pageNavigation = {
+  isCollapsed: true,
+  $pageNavigation: $('.page-nav'),
+
+  toggleListener() {
+    const {$pageNavigation} = this;
+    const $button = $('.page-nav_toggle');
+
+    $button.on('click', () => {
+      const isCollapsed = this.isCollapsed = !this.isCollapsed;
+
+      if (isCollapsed) {
+        $pageNavigation.removeClass('is-expand');
+        $button
+          .removeClass('is-cross')
+          .addClass('is-menu');
+      } else {
+        $pageNavigation.addClass('is-expand');
+        $button
+          .removeClass('is-menu')
+          .addClass('is-cross');
+      }
+    });
+
+    return this;
+  },
+
+  anchorLinkListener() {
+    this.$pageNavigation.on('click', e => {
+      const $target = $(e.target);
+      if (!isAnchorLink($target)) return;
+
+      $('html').add('body').animate({
+        scrollTop: $($target.attr('href')).offset().top
+      }, 400, 'swing');
+    });
+
+    return this;
+  },
+};
+
 $(() => {
   $('body').css('overflow', 'auto');
   $('.preloader').fadeOut(300);
 
   setUpCarousels();
   autosize($('.textarea-autosize'));
+
+  pageNavigation
+    .toggleListener()
+    .anchorLinkListener();
+
   new EventListeners();
   new WorksGallery($('#works_gallery'));
 });
