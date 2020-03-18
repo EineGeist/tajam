@@ -110,6 +110,7 @@ var Modal = /*#__PURE__*/function () {
       $menu.css({
         'position': 'fixed',
         'top': '0',
+        'left': '0',
         'display': 'flex',
         'align-items': 'center',
         'justify-content': 'flex-end',
@@ -120,6 +121,8 @@ var Modal = /*#__PURE__*/function () {
         'cursor': 'auto'
       });
       $fullscreenBtn.add($closeBtn).css({
+        'max-width': '100%',
+        // IE fix
         'margin-left': '30px',
         'font-family': 'icomoon',
         'font-size': '30px',
@@ -387,7 +390,8 @@ var ImageGalleryFigure = /*#__PURE__*/function () {
       });
       return $(document.createElement('figcaption')).html($figcaptionContent).css({
         'position': 'absolute',
-        'bottom': 0,
+        'bottom': '0',
+        'left': '0',
         'display': 'flex',
         'justify-content': 'center',
         'width': '100%',

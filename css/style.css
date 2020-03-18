@@ -95,7 +95,6 @@ h2, h3 {
 h2 {
   font-family: "Playfair Display", serif;
   font-size: 1.57em;
-  line-height: 1;
 }
 
 h3 {
@@ -176,7 +175,10 @@ hr {
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-flex-flow: column nowrap;
+  -moz-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
   width: 100%;
 }
 
@@ -192,45 +194,33 @@ hr {
   padding: 70px 10px;
 }
 
-#home {
-  min-height: 670px;
-  background: #130d33 url("../files/bg/home.jpg") no-repeat center;
-  -webkit-background-size: cover;
-  background-size: cover;
-  text-align: center;
-}
-
-#about {
-  min-height: 950px;
-  color: #413d4b;
-}
-
-#expertise {
-  color: #413d4b;
-}
-
-#team {
-  background: #130d33 url("../files/bg/team.jpg") no-repeat center;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-#works {
-  color: #413d4b;
-}
-
-#testimonials {
-  background: #130d33 url("../files/bg/testimonials.jpg") no-repeat center;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
+#about,
+#expertise,
+#works,
 #contact {
   color: #413d4b;
 }
 
+#home {
+  background: #130d33 url("../files/bg/home.jpg") no-repeat center;
+}
+
+#team {
+  background: #130d33 url("../files/bg/team.jpg") no-repeat center;
+}
+
+#testimonials {
+  background: #130d33 url("../files/bg/testimonials.jpg") no-repeat center;
+}
+
 #page-footer {
   background: #130d33 url("../files/bg/footer.jpg") no-repeat center;
+}
+
+#home,
+#team,
+#testimonials,
+#page-footer {
   -webkit-background-size: cover;
   background-size: cover;
 }
@@ -337,8 +327,6 @@ hr {
 }
 
 .start-playing {
-  position: absolute;
-  margin: auto;
   text-align: center;
 }
 .start-playing + .video {
@@ -417,6 +405,10 @@ hr {
   border: 1px solid rgba(215, 215, 217, 0.5);
 }
 
+.person-name {
+  font-weight: bold;
+}
+
 .social-list {
   display: -webkit-box;
   display: -webkit-flex;
@@ -487,10 +479,6 @@ hr {
 }
 
 @media only screen and (max-width: 1280px) {
-  .social-item {
-    margin-right: 15px;
-  }
-
   .social-icon {
     width: 42px;
     height: 42px;
@@ -571,12 +559,6 @@ body {
 }
 .home_container {
   position: relative;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -moz-box-flex: 1;
-  -moz-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-flex;
@@ -596,7 +578,9 @@ body {
   -webkit-justify-content: center;
   -moz-justify-content: center;
   justify-content: center;
+  min-height: 670px;
   padding: 15px 10px 70px 10px;
+  text-align: center;
 }
 
 .home_top {
@@ -646,7 +630,7 @@ body {
 }
 
 .home_container .home_carousel {
-  position: initial;
+  position: static;
 }
 
 .home_dots {
@@ -702,6 +686,9 @@ body {
   -moz-justify-content: center;
   justify-content: center;
   padding: 0 calc(8.33% + 10px);
+}
+.home_promo > * {
+  max-width: 100%;
 }
 
 .home_promo-title {
@@ -1070,6 +1057,7 @@ body {
   -moz-flex-flow: row wrap;
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
+  max-width: 100%;
 }
 
 .expertise_list-item {
@@ -1195,8 +1183,8 @@ body {
   margin-bottom: 60px;
 }
 
-.person-name {
-  font-weight: bold;
+.team_person-card {
+  max-height: 100%;
 }
 
 .team_sub {
@@ -1206,12 +1194,11 @@ body {
 
 @media only screen and (max-width: 1024px) {
   .team_cards {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-justify-content: center;
@@ -1293,7 +1280,7 @@ body {
   position: relative;
   width: 16.66%;
   cursor: pointer;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .works_figure:hover .works_caption {
   top: 0;
@@ -1340,6 +1327,7 @@ body {
   transition: 0.3s ease;
 }
 .works_caption > * {
+  max-width: 100%;
   cursor: auto;
 }
 .works_caption > h3 {
@@ -1441,15 +1429,20 @@ body {
   padding: 5rem 80px 0;
   text-align: center;
 }
+.testimony > * {
+  max-width: 100%;
+}
 .testimony::before {
   content: "“";
   position: absolute;
   top: 30px;
-  display: block;
-  width: 100%;
+  left: 50%;
   font-family: "Playfair Display", serif;
   font-size: 100px;
   line-height: 0;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .testimony_quote {
@@ -1794,6 +1787,18 @@ textarea.contact_text-input {
 .client,
 .contact-and-client-divider {
     width: 100%;
+  }
+
+  .client_grid {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+  }
+
+  .client_grid-item:nth-child(odd) {
+    margin-right: 10px;
   }
 }
 .footer_container {
