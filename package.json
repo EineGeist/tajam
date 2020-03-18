@@ -5,10 +5,10 @@
   "description": "Tajam landing page",
   "main": "app/index.html",
   "scripts": {
-    "build:sass": "sass src/scss/main.scss app/css/style.css",
-    "watch:sass": "sass --watch src/scss/main.scss app/css/style.css",
+    "build:sass": "sass src/scss/main.scss dist/css/style.css",
+    "watch:sass": "sass --watch src/scss/main.scss dist/css/style.css",
     "push:master": "git push -u origin master",
-    "push:gh-pages": "gh-pages -d app",
+    "push:gh-pages": "gh-pages -d dist",
     "deploy": "npm run push:master && npm run push:gh-pages"
   },
   "repository": {
