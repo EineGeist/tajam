@@ -122,7 +122,6 @@ var Modal = /*#__PURE__*/function () {
       });
       $fullscreenBtn.add($closeBtn).css({
         'max-width': '100%',
-        // IE fix
         'margin-left': '30px',
         'font-family': 'icomoon',
         'font-size': '30px',
