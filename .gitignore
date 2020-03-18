@@ -1,5 +1,6 @@
 /dist/files
 /dist/css
+/dist/js
 /node_modules
 /.idea
 

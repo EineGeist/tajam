@@ -14,7 +14,6 @@ It contains various visual additions, carousels and self-written Gallery viewer.
 * Page: Add sticky page navigation
 * Gallery viewer: Add thumbnail navigation
 * Gallery viewer: Add animations
-* Add Babel
 
 ### Tools and plugins:
 * SASS

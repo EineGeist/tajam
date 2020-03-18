@@ -5,6 +5,8 @@
   "description": "Tajam landing page",
   "main": "app/index.html",
   "scripts": {
+    "transpile:babel": "npx babel src/js/main.js --out-file src/js/main.js",
+    "watch:babel": "npx babel src/js/main.js -w --out-file src/js/main.js",
     "build:sass": "sass src/scss/main.scss dist/css/style.css",
     "watch:sass": "sass --watch src/scss/main.scss dist/css/style.css",
     "push:master": "git push -u origin master",
@@ -17,8 +19,20 @@
   "author": "Ivan Dovzhikov",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "gh-pages": "^2.2.0",
     "sass": "^1.26.2",
     "sass-autoprefixer": "^1.0.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "IE 11"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
