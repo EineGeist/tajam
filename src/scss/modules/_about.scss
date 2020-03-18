@@ -1,10 +1,10 @@
 .about_container {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-flex-flow(row nowrap);
 }
 
 .about_logo-container {
-  @include vp-flexbox();
+  @include vp-flexbox;
   @include vp-align-items(start);
   @include vp-justify-content(center);
   width: 41.66%; // 5/12
@@ -23,7 +23,7 @@
 }
 
 .about_video-bg-wrapper {
-  @include vp-flexbox();
+  @include vp-flexbox;
   min-height: 550px;
 
   background: $main-color url("../files/bg/about.jpg") no-repeat center;
@@ -42,12 +42,16 @@
   }
 
   .about_promo {
-    h2 {
-      text-align: center;
-    }
-
     width: 100%;
     padding: 0 10%;
+  }
+
+  .about_promo-title {
+    text-align: center;
+  }
+
+  .about_btn-container {
+    text-align: center;
   }
 }
 
