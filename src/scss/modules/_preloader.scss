@@ -15,7 +15,7 @@ body {
 
 .preloader_loading-sign {
   font-family: 'Arial', sans-serif;
-  font-size: 10em;
+  font-size: 140px;
   line-height: 1;
   letter-spacing: 0.05em;
   color: $complementary-color;
@@ -47,5 +47,25 @@ body {
 
     border-top: 0;
     border-left: 0;
+  }
+}
+
+//* Adaptive styles ***********//
+
+@include for_big_phone {
+  .preloader_loading-sign {
+    font-size: 8em;
+  }
+}
+
+@include for_phone {
+  .preloader_loading-sign {
+    font-size: 5em;
+  }
+}
+
+@include for_small_phone {
+  .preloader_loading-sign {
+    font-size: 2em;
   }
 }
