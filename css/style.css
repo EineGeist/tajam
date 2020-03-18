@@ -1220,29 +1220,23 @@ body {
     padding: 0 10%;
   }
 
+  .team_person-card:nth-child(odd) {
+    margin-right: 60px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .team_cards {
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 600px) {
   .team_cards {
     margin-bottom: 50px;
   }
 
   .team_person-card {
-    margin: 0 0 30px;
+    margin: 10px 0;
   }
-
-  .team_person-card:nth-child(odd) {
-    margin-right: 30px;
-  }
-}
-@media only screen and (max-width: 800px) {
-  .team_cards {
-    padding: 0 5%;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .team_cards {
-    padding: 0;
-  }
-}
-@media only screen and (max-width: 500px) {
   .team_person-card:nth-child(odd) {
     margin-right: 0;
   }
