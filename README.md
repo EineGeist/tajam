@@ -12,17 +12,6 @@ It contains various visual additions, carousels and self-written Gallery viewer.
 
 <hr>
 
-### Future plans:
-* Page: Add sticky page navigation
-* Gallery viewer: Add thumbnail navigation
-* Gallery viewer: Add animations
-
-### Tools and plugins:
-* SASS
-* JQuery
-* Owl Carousel 2
-* Autosize
-
 Web page uses a mix of BEM and SMACSS.
 
 ### Credits:
